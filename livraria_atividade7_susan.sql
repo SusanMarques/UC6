@@ -82,6 +82,9 @@ insert into cliente(cod_cliente,nome,email,telefone_1,telefone_2,rua,bairro,cida
 values
 (1000,'susan jurubeba','susan@gmail.com','84665559879','84966332584','cidade das rosas','Nossa senhora ap','Natal','RN'),
 (1001,'susana marques','susana@gmail.com','84667756932','87256398521','sao joao','Nossa senhora ap','mossoro','RN')
+(1002, 'albanea', 'albanea@cassia.com','84995556231','8433226512','jardins','flores','Natal','RN'),
+(1004, 'claudia','claudia@gmail.com','8463225178','8497885632','gramore','zn','natal','RN'),
+(1003, 'danilo','danilo@gmail.co,','8465332154','8495663217','jose da silva','zn', 'natal', 'RN')
 
 select * from cliente;
 ------------------------------------------------
