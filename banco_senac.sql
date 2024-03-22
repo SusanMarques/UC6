@@ -12,8 +12,9 @@ CREATE TABLE Senac(
 	endereco text,
 	telefone char(9)
 );
+select * from Senac;
 
--- criar a tabela funcion�rio
+-- criar a tabela funcionário
 CREATE TABLE funcionario(
 	nome varchar(100),
 	telefone char(9),
@@ -22,6 +23,11 @@ CREATE TABLE funcionario(
 	cargo varchar(50),
 	email varchar(255)
 );
+ALTER TABLE funcionario ADD salario decimal(8,2);
+ALTER TABLE funcionario ADD data_de_admissao date;
+
+
+select * from funcionario;
 
 --criar a tabela Curso
 CREATE TABLE curso(
@@ -32,6 +38,13 @@ CREATE TABLE curso(
 	coordenador varchar(50),
 	nome_do_curso varchar(100),
 );
+ALTER TABLE curso ADD categoria varchar(50);
+ALTER TABLE curso ADD carga_horaria decimal(7,2);
+ALTER TABLE curso ADD preco decimal(8,2);
+ALTER TABLE curso ADD qnt_vagas int;
+
+select * from curso;
+
 --criar a tabela aluno 
 CREATE TABLE aluno(
 	matricula int primary key,
@@ -53,7 +66,9 @@ CREATE TABLE uc(
 	nome_da_uc varchar(50)
 );
 
--- criando as especializa��es
+-- criando as especializações
+
+-- especialização de funcionários
 CREATE TABLE professor(
 	cpf char(11) foreign key references funcionario(cpf),
 );
@@ -69,6 +84,7 @@ CREATE TABLE porteiro(
 CREATE TABLE recepcionistas(
 	cpf char(11) foreign key references funcionario(cpf),
 );
+-- especialização da entidade aluno
 
 CREATE TABLE pagante(
 	 matricula int foreign key references aluno(matricula),
@@ -82,7 +98,7 @@ CREATE TABLE aprendiz(
 );
 
 
--- criando as associa��es
+-- criando as associações
 create table localizacao_aluno(
 	id_endereco int,
 	matricula int,
@@ -110,3 +126,19 @@ create table contrato(
 	foreign key (id_unidade) references Senac(id_unidade),
 	foreign key (cpf) references funcionario(cpf)
 );
+
+create table disponibilidade(
+	id_do_curso int,
+	id_unidade int,
+	foreign key (id_do_curso) references curso(id_do_curso),
+	foreign key (id_unidade) references Senac(id_unidade)
+);
+
+select * from disponibilidade;
+
+-- criar registros
+
+insert into Senac(id_unidade,nome_da_unidade,cnpj,url_site_senac,email,endereco,telefone)
+VALUES
+(1,'SENAC ZONA NORTE','12345678912345','senaczn.com.br','senaczn@gmail.com','Tv. Macaé, 2875 - Potengi, Natal','845231649'),
+(2,'SENAC CENTRO','78945612352698','senaccentro.com.br','senaccentro@gmail.com',' R. São Tomé, 444 - Cidade Alta','84963251')
